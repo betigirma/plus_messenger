@@ -11,6 +11,7 @@ import 'categories.dart';
 import 'channel.dart';
 import 'chatfolders.dart';
 import 'chatscounters.dart';
+import 'chattiles.dart';
 import 'contacts.dart';
 import 'downloads.dart';
 import 'downloadthemes.dart';
@@ -35,7 +36,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const Mainpage(),
-        '/first': (context) => const NewGroupPage(),
+        '/first': (context) => const NewGroupPage(
+              title: '',
+            ),
       },
     );
   }
@@ -126,14 +129,488 @@ class _MainpageState extends State<Mainpage> {
               ],
             ),
           ),
-          //body: TabBarView(children: [
-          //GestureDetector(
-          //onTap: (() {
-          //Navigator.push(context,
-          //  MaterialPageRoute(builder: ((context) => selector())));
-          //}),
-          //),
-          //]),
+          body: TabBarView(children: [
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 50),
+              child: FractionallySizedBox(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: ListView.separated(
+                      itemBuilder: (ctx, i) {
+                        return ListTile(
+                            leading: CircleAvatar(
+                              radius: 28,
+                              backgroundImage: AssetImage(items[i].imgPath),
+                            ),
+                            title: items[i].status
+                                ? Text(
+                                    items[i].name,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                : Row(
+                                    children: [
+                                      Text(
+                                        items[i].name,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Icon(
+                                        Icons.volume_mute,
+                                        size: 18,
+                                        color: Colors.grey[900],
+                                      )
+                                    ],
+                                  ),
+                            subtitle: Text(
+                              items[i].message,
+                              style: const TextStyle(color: Colors.black),
+                            ),
+                            // ignore: unnecessary_null_comparison
+                            trailing: items[i].messNum != null
+                                ? Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(items[i].time),
+                                      const SizedBox(
+                                        height: 7,
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: items[i].status
+                                                ? Colors.blue
+                                                : Colors.grey[400],
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            '${items[i].messNum}',
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                : Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(items[i].time),
+                                      const SizedBox(
+                                        height: 7,
+                                      ),
+                                    ],
+                                  ));
+                      },
+                      separatorBuilder: (ctx, i) {
+                        return const Divider();
+                      },
+                      itemCount: items.length),
+                ),
+              ),
+            ),
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 50),
+              child: FractionallySizedBox(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: ListView.separated(
+                      itemBuilder: (ctx, i) {
+                        return ListTile(
+                            leading: CircleAvatar(
+                              radius: 28,
+                              backgroundImage: AssetImage(items[i].imgPath),
+                            ),
+                            title: items[i].status
+                                ? Text(
+                                    items[i].name,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                : Row(
+                                    children: [
+                                      Text(
+                                        items[i].name,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Icon(
+                                        Icons.volume_mute,
+                                        size: 18,
+                                        color: Colors.grey[900],
+                                      )
+                                    ],
+                                  ),
+                            subtitle: Text(
+                              items[i].message,
+                              style: const TextStyle(color: Colors.black),
+                            ),
+                            // ignore: unnecessary_null_comparison
+                            trailing: items[i].messNum != null
+                                ? Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(items[i].time),
+                                      const SizedBox(
+                                        height: 7,
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: items[i].status
+                                                ? Colors.blue
+                                                : Colors.grey[400],
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            '${items[i].messNum}',
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                : Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(items[i].time),
+                                      const SizedBox(
+                                        height: 7,
+                                      ),
+                                    ],
+                                  ));
+                      },
+                      separatorBuilder: (ctx, i) {
+                        return const Divider();
+                      },
+                      itemCount: items.length),
+                ),
+              ),
+            ),
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 50),
+              child: FractionallySizedBox(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: ListView.separated(
+                      itemBuilder: (ctx, i) {
+                        return ListTile(
+                            leading: CircleAvatar(
+                              radius: 28,
+                              backgroundImage: AssetImage(items[i].imgPath),
+                            ),
+                            title: items[i].status
+                                ? Text(
+                                    items[i].name,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                : Row(
+                                    children: [
+                                      Text(
+                                        items[i].name,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Icon(
+                                        Icons.volume_mute,
+                                        size: 18,
+                                        color: Colors.grey[900],
+                                      )
+                                    ],
+                                  ),
+                            subtitle: Text(
+                              items[i].message,
+                              style: const TextStyle(color: Colors.black),
+                            ),
+                            // ignore: unnecessary_null_comparison
+                            trailing: items[i].messNum != null
+                                ? Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(items[i].time),
+                                      const SizedBox(
+                                        height: 7,
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: items[i].status
+                                                ? Colors.blue
+                                                : Colors.grey[400],
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            '${items[i].messNum}',
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                : Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(items[i].time),
+                                      const SizedBox(
+                                        height: 7,
+                                      ),
+                                    ],
+                                  ));
+                      },
+                      separatorBuilder: (ctx, i) {
+                        return const Divider();
+                      },
+                      itemCount: items.length),
+                ),
+              ),
+            ),
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 50),
+              child: FractionallySizedBox(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: ListView.separated(
+                      itemBuilder: (ctx, i) {
+                        return ListTile(
+                            leading: CircleAvatar(
+                              radius: 28,
+                              backgroundImage: AssetImage(items[i].imgPath),
+                            ),
+                            title: items[i].status
+                                ? Text(
+                                    items[i].name,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                : Row(
+                                    children: [
+                                      Text(
+                                        items[i].name,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Icon(
+                                        Icons.volume_mute,
+                                        size: 18,
+                                        color: Colors.grey[900],
+                                      )
+                                    ],
+                                  ),
+                            subtitle: Text(
+                              items[i].message,
+                              style: const TextStyle(color: Colors.black),
+                            ),
+                            // ignore: unnecessary_null_comparison
+                            trailing: items[i].messNum != null
+                                ? Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(items[i].time),
+                                      const SizedBox(
+                                        height: 7,
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: items[i].status
+                                                ? Colors.blue
+                                                : Colors.grey[400],
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            '${items[i].messNum}',
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                : Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(items[i].time),
+                                      const SizedBox(
+                                        height: 7,
+                                      ),
+                                    ],
+                                  ));
+                      },
+                      separatorBuilder: (ctx, i) {
+                        return const Divider();
+                      },
+                      itemCount: items.length),
+                ),
+              ),
+            ),
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 50),
+              child: FractionallySizedBox(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: ListView.separated(
+                      itemBuilder: (ctx, i) {
+                        return ListTile(
+                            leading: CircleAvatar(
+                              radius: 28,
+                              backgroundImage: AssetImage(items[i].imgPath),
+                            ),
+                            title: items[i].status
+                                ? Text(
+                                    items[i].name,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                : Row(
+                                    children: [
+                                      Text(
+                                        items[i].name,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Icon(
+                                        Icons.volume_mute,
+                                        size: 18,
+                                        color: Colors.grey[900],
+                                      )
+                                    ],
+                                  ),
+                            subtitle: Text(
+                              items[i].message,
+                              style: const TextStyle(color: Colors.black),
+                            ),
+                            // ignore: unnecessary_null_comparison
+                            trailing: items[i].messNum != null
+                                ? Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(items[i].time),
+                                      const SizedBox(
+                                        height: 7,
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: items[i].status
+                                                ? Colors.blue
+                                                : Colors.grey[400],
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            '${items[i].messNum}',
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                : Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(items[i].time),
+                                      const SizedBox(
+                                        height: 7,
+                                      ),
+                                    ],
+                                  ));
+                      },
+                      separatorBuilder: (ctx, i) {
+                        return const Divider();
+                      },
+                      itemCount: items.length),
+                ),
+              ),
+            ),
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 50),
+              child: FractionallySizedBox(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: ListView.separated(
+                      itemBuilder: (ctx, i) {
+                        return ListTile(
+                            leading: CircleAvatar(
+                              radius: 28,
+                              backgroundImage: AssetImage(items[i].imgPath),
+                            ),
+                            title: items[i].status
+                                ? Text(
+                                    items[i].name,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                : Row(
+                                    children: [
+                                      Text(
+                                        items[i].name,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Icon(
+                                        Icons.volume_mute,
+                                        size: 18,
+                                        color: Colors.grey[900],
+                                      )
+                                    ],
+                                  ),
+                            subtitle: Text(
+                              items[i].message,
+                              style: const TextStyle(color: Colors.black),
+                            ),
+                            // ignore: unnecessary_null_comparison
+                            trailing: items[i].messNum != null
+                                ? Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(items[i].time),
+                                      const SizedBox(
+                                        height: 7,
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: items[i].status
+                                                ? Colors.blue
+                                                : Colors.grey[400],
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            '${items[i].messNum}',
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                : Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(items[i].time),
+                                      const SizedBox(
+                                        height: 7,
+                                      ),
+                                    ],
+                                  ));
+                      },
+                      separatorBuilder: (ctx, i) {
+                        return const Divider();
+                      },
+                      itemCount: items.length),
+                ),
+              ),
+            ),
+          ]),
           floatingActionButton: FloatingActionButton(
             backgroundColor: Colors.teal[500],
             onPressed: () {},
@@ -190,7 +667,23 @@ class _MainpageState extends State<Mainpage> {
     return Material(
       child: ListTile(
         leading: Icon(icon),
-        title: Text(title),
+        title: Row(
+          children: [
+            const Padding(padding: EdgeInsets.all(0)),
+            TextButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return selector();
+                }));
+              },
+              // ignore: prefer_const_constructors
+              child: Text(
+                title,
+                style: const TextStyle(color: Colors.black),
+              ),
+            ),
+          ],
+        ),
         onTap: () {
           Navigator.pop(context);
           setState(() {
@@ -235,9 +728,13 @@ class _MainpageState extends State<Mainpage> {
 
   Widget selector() {
     if (currentpage == DrawerSections.newgroup) {
-      container = const NewGroupPage();
+      container = const NewGroupPage(
+        title: '',
+      );
     } else if (currentpage == DrawerSections.newsecretchat) {
-      container = const NewsecretchatPage();
+      container = const NewsecretchatPage(
+        title: '',
+      );
     } else if (currentpage == DrawerSections.newchannel) {
       container = const NewchannelPage();
     } else if (currentpage == DrawerSections.contacts) {
